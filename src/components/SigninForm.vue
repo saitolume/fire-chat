@@ -1,7 +1,7 @@
 <template>
   <div class="signin-form">
     <h2>Sign in</h2>
-    <input type="text" placeholder="ユーザー名" v-model="username">
+    <input type="text" placeholder="メールアドレス" v-model="email">
     <input type="password" placeholder="パスワード" v-model="password">
     <button>サインイン</button>
     <div class="msg">
