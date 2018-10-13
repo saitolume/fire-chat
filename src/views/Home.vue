@@ -1,20 +1,18 @@
 <template>
   <div class="home">
-    <h1 class="msg" >Fire Chat</h1>
-    <img class="vue-logo" src="../assets/vue_logo.png" alt="Vue logo">
-    <span class="plus">+</span>
-    <img class="firebase-logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
-    <LoginForm />
+    <img class="logo" src="../assets/vue_logo.png" alt="Vue logo">
+    <img class="logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
+    <SigninForm />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import LoginForm from '@/components/LoginForm.vue';
+import SigninForm from '@/components/SigninForm.vue';
 
 @Component({
   components: {
-    LoginForm,
+    SigninForm,
   },
 })
 export default class Home extends Vue {}
@@ -22,25 +20,11 @@ export default class Home extends Vue {}
 
 <style scoped>
 .home {
-  text-align: center;
+  margin-top: 30px;
 }
 
-.msg {
-  margin-top: 70px;
-}
-
-.vue-logo {
-  padding-top: 0px;
-  padding-right: 190px;
-}
-
-.plus {
-  font-size: 70px;
-  font-weight: bold;
-  padding: 0px 30px 0px 10px;
-  position: absolute;
-  top: 165px;
-  left: 900px;
+.logo {
+  margin: 30px 40px 0px 40px;
 }
 </style>
 
