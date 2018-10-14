@@ -1,5 +1,5 @@
 <template>
-  <div class="signin-form">
+  <div class="sign-in-form">
     <h2>Sign in</h2>
     <input type="text" placeholder="メールアドレス" v-model="email">
     <input type="password" placeholder="パスワード" v-model="password">
@@ -12,14 +12,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Provide } from 'vue-property-decorator';
 
 @Component({})
-export default class SigninForm extends Vue {}
+export default class SignInForm extends Vue {
+  @Provide()
+  private email: string = '';
+
+  @Provide()
+  private password: string = '';
+}
 </script>
 
 <style scoped>
-.signin-form {
+.sign-in-form {
   margin-top: 20px;
   display: flex;
   flex-flow: column nowrap;
