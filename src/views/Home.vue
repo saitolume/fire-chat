@@ -2,17 +2,17 @@
   <div class="home">
     <img class="logo" src="../assets/vue_logo.png" alt="Vue logo">
     <img class="logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
-    <SigninForm />
+    <SignInForm />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import SigninForm from '@/components/SigninForm.vue';
+import SignInForm from '@/components/SignInForm.vue';
 
 @Component({
   components: {
-    SigninForm,
+    SignInForm,
   },
 })
 export default class Home extends Vue {}
