@@ -3,7 +3,9 @@
     <h2 class="msg">Sign up</h2>
     <input type="text" placeholder="メールアドレス" v-model="email">
     <input type="password" placeholder="パスワード" v-model="password">
-    <button @click="signUp">サインアップ</button>
+    <router-link to="/">
+      <button @click="signUp">サインアップ</button>
+    </router-link>
   </div>
 </template>
 
@@ -21,6 +23,9 @@ export default class SignUpForm extends Vue {
 
   private signUp(): void {
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+      .then(() => {
+        alert(`${this.email}のアカウントを作成しました。`);
+      })
       .catch((error) => {
         alert(error.message);
       });
