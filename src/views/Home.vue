@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img class="logo" src="../assets/vue_logo.png" alt="Vue logo">
+    <!-- <img class="logo" src="../assets/vue_logo.png" alt="Vue logo"> -->
     <img class="logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
     <SignInForm />
   </div>

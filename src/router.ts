@@ -18,5 +18,10 @@ export default new Router({
       name: 'signup',
       component: () => import('./views/SignUp.vue'),
     },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: () => import('./views/Chat.vue'),
+    },
   ],
 });
