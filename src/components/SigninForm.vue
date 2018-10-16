@@ -3,7 +3,7 @@
     <h2>Sign in</h2>
     <input type="text" placeholder="メールアドレス" v-model="email">
     <input type="password" placeholder="パスワード" v-model="password">
-    <button>サインイン</button>
+    <button @click="signIn">サインイン</button>
     <div class="msg">
       まだアカウントがない方は
       <router-link to="/signup">こちら</router-link>
@@ -13,6 +13,8 @@
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
+import firebase from 'firebase';
+
 
 @Component({})
 export default class SignInForm extends Vue {
@@ -21,6 +23,17 @@ export default class SignInForm extends Vue {
 
   @Provide()
   private password: string = '';
+
+  private signIn(): void {
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+      .then(() => {
+        alert(`${this.email}でサインインしました。`);
+        this.$router.push('/chat');
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }
 }
 </script>
 
