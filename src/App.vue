@@ -2,15 +2,16 @@
   <div id="app">
     <h1 class="title-text">
       <router-link to="/">Fire Chat</router-link>
-    </h1>
+    </h1>    
     <router-view/>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-export default Vue.extend({
-});
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({})
+export default class App extends Vue {}
 </script>
 
 <style>
