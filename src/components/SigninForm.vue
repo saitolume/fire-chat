@@ -1,9 +1,9 @@
 <template>
-  <div class="signin-form">
+  <div class="sign-in-form">
     <h2>Sign in</h2>
-    <input type="text" placeholder="ユーザー名" v-model="username">
+    <input type="text" placeholder="メールアドレス" v-model="email">
     <input type="password" placeholder="パスワード" v-model="password">
-    <button>サインイン</button>
+    <button @click="signIn">サインイン</button>
     <div class="msg">
       まだアカウントがない方は
       <router-link to="/signup">こちら</router-link>
@@ -12,14 +12,33 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Provide } from 'vue-property-decorator';
+import firebase from 'firebase';
+
 
 @Component({})
-export default class SigninForm extends Vue {}
+export default class SignInForm extends Vue {
+  @Provide()
+  private email: string = '';
+
+  @Provide()
+  private password: string = '';
+
+  private signIn(): void {
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+      .then(() => {
+        alert(`${this.email}でサインインしました。`);
+        this.$router.push('/chat');
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }
+}
 </script>
 
 <style scoped>
-.signin-form {
+.sign-in-form {
   margin-top: 20px;
   display: flex;
   flex-flow: column nowrap;
