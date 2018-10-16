@@ -2,7 +2,7 @@
   <div id="app">
     <h1 class="title-text">
       <router-link to="/">Fire Chat</router-link>
-    </h1>    
+    </h1>
     <router-view/>
   </div>
 </template>
