@@ -1,8 +1,11 @@
 <template>
   <div class="sign-up-form">
-    <input type="text" placeholder="メールアドレス" v-model="email">
-    <input type="password" placeholder="パスワード" v-model="password">
-    <button @click="signUp">サインアップ</button>
+    <v-flex xs12 sm6 md3>
+      <v-text-field placeholder="メールアドレス" v-model="email"></v-text-field>
+      <v-text-field placeholder="パスワード" v-model="password"></v-text-field>
+      <v-text-field placeholder="パスワード（再入力）" v-model="password"></v-text-field>
+    </v-flex>
+    <v-btn @click="signUp" outline>サインアップ</v-btn>
   </div>
 </template>
 
@@ -37,10 +40,7 @@ export default class SignUpForm extends Vue {
   align-items: center
 }
 
-input {
-  margin-bottom: 20px;
-  padding: 8px 10px;
-  width: 200px;
+button {
+  margin: 20px;
 }
 </style>
-
