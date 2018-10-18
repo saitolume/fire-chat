@@ -1,8 +1,8 @@
 <template>
-  <div class="sign-in-form">
+  <div class="sign-up-form">
     <input type="text" placeholder="メールアドレス" v-model="email">
     <input type="password" placeholder="パスワード" v-model="password">
-    <button @click="signIn">サインイン</button>
+    <button @click="signUp">サインアップ</button>
   </div>
 </template>
 
@@ -11,15 +11,15 @@ import { Component, Vue, Provide } from 'vue-property-decorator';
 import firebase from 'firebase';
 
 @Component({})
-export default class SignInForm extends Vue {
+export default class SignUpForm extends Vue {
   @Provide() private email: string = '';
   @Provide() private password: string = '';
 
-  private signIn(): void {
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+  private signUp(): void {
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then(() => {
-        alert(`${this.email}でサインインしました。`);
-        this.$router.push('/chat');
+        alert(`${this.email}のアカウントを作成しました。`);
+        this.$router.push('/');
       })
       .catch((error) => {
         alert(error.message);
@@ -29,7 +29,7 @@ export default class SignInForm extends Vue {
 </script>
 
 <style scoped>
-.sign-in-form {
+.sign-up-form {
   margin-top: 20px;
   display: flex;
   flex-flow: column nowrap;

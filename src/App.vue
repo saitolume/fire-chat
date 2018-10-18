@@ -14,7 +14,7 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class App extends Vue {}
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,10 +25,9 @@ export default class App extends Vue {}
 
 .title-text {
   margin-top: 50px;
-}
-
-a {
-  text-decoration: none;
-  color: #2c3e50;
+  a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
 }
 </style>
