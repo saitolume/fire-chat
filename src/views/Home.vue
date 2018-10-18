@@ -1,8 +1,12 @@
 <template>
   <div class="home">
-    <!-- <img class="logo" src="../assets/vue_logo.png" alt="Vue logo"> -->
+    <h1>Sign in</h1>
     <img class="logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
     <SignInForm />
+    <div class="msg">
+      まだアカウントがない方は
+      <router-link to="/signup">こちら</router-link>
+    </div>
   </div>
 </template>
 
@@ -23,8 +27,13 @@ export default class Home extends Vue {}
   margin-top: 30px;
 }
 
-.logo {
-  margin: 30px 40px 0px 40px;
+.msg {
+  margin: 20px;
+  font-size: 13px;
+}
+
+a {
+  color: #42b983;
+  text-decoration: none;
 }
 </style>
-

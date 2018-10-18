@@ -1,49 +1,26 @@
 <template>
-  <div class="sign-up-form">
-    <h2 class="msg">Sign up</h2>
-    <input type="text" placeholder="メールアドレス" v-model="email">
-    <input type="password" placeholder="パスワード" v-model="password">
-    <button @click="signUp">サインアップ</button>
+  <div class="sign-up">
+    <h1>Sign up</h1>
+    <img class="logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
+    <SignUpForm />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import firebase from 'firebase';
+import SignUpForm from '@/components/SignUpForm.vue';
 
-@Component({})
-export default class SignUpForm extends Vue {
-  @Provide()
-  private email: string = '';
-
-  @Provide()
-  private password: string = '';
-
-  private signUp(): void {
-    firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-      .then(() => {
-        alert(`${this.email}のアカウントを作成しました。`);
-        this.$router.push('/');
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  }
-}
+@Component({
+  components: {
+    SignUpForm,
+  },
+})
+export default class SignUp extends Vue {}
 </script>
 
 <style scoped>
-.sign-up-form {
-  margin-top: 20px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center
-}
-
-input {
-  margin-bottom: 10px;
-  padding: 5px 5px;
+.sign-up {
+  margin-top: 30px;
 }
 </style>
-
