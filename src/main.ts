@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store/index';
 import firebase from 'firebase';
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
@@ -16,6 +18,8 @@ const config = {
   messagingSenderId: '69151851685',
 };
 firebase.initializeApp(config);
+
+Vue.use(Vuetify);
 
 new Vue({
   router,
