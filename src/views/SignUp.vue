@@ -1,7 +1,7 @@
 <template>
   <div class="sign-up">
     <h1>Sign up</h1>
-    <img class="logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
+    <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
     <SignUpForm />
   </div>
 </template>
@@ -22,5 +22,9 @@ export default class SignUp extends Vue {}
 <style scoped>
 .sign-up {
   margin-top: 30px;
+}
+
+h1 {
+  margin: 10px 0px 20px 0px;
 }
 </style>
