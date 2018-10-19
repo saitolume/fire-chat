@@ -20,10 +20,6 @@ export default class SignUp extends Vue {}
 </script>
 
 <style scoped>
-.sign-up {
-  margin-top: 30px;
-}
-
 h1 {
   margin: 10px 0px 20px 0px;
 }
