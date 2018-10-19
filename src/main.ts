@@ -5,6 +5,7 @@ import store from './store/index';
 import firebase from 'firebase';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
@@ -19,7 +20,9 @@ const config = {
 };
 firebase.initializeApp(config);
 
-Vue.use(Vuetify);
+Vue.use(Vuetify, {
+  iconfont: 'mdi',
+});
 
 new Vue({
   router,
