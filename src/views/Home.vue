@@ -23,10 +23,6 @@ export default class Home extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-.home {
-  margin-top: 30px;
-}
-
 h1 {
   margin: 10px 0px 20px 0px;
 }
