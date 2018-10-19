@@ -1,16 +1,19 @@
 <template>
-  <div id="app">
-    <h1 class="title-text">
-      <router-link to="/">Fire Chat</router-link>
-    </h1>
+  <v-app>
+    <Header />
     <router-view/>
-  </div>
+  </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Header from '@/components/Header.vue';
 
-@Component({})
+@Component({
+  components: {
+    Header,
+  },
+})
 export default class App extends Vue {}
 </script>
 
@@ -21,14 +24,12 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   text-align: center;
-}
-
-.title-text {
-  margin-top: 50px;
+  margin-top: 60px;
+  padding-top: 30px;
 }
 
 a {
-  text-decoration: none;
-  color: #2c3e50;
+    color: #2c3e50;
+    text-decoration: none;
 }
 </style>

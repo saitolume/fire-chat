@@ -1,8 +1,12 @@
 <template>
   <div class="home">
-    <!-- <img class="logo" src="../assets/vue_logo.png" alt="Vue logo"> -->
-    <img class="logo" src="../assets/firebase_logo.png" height="200px" alt="firebase logo">
+    <h1>Sign in</h1>
+    <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
     <SignInForm />
+    <div class="msg">
+      まだアカウントがない方は
+      <router-link to="/signup">こちら</router-link>
+    </div>
   </div>
 </template>
 
@@ -18,13 +22,17 @@ import SignInForm from '@/components/SignInForm.vue';
 export default class Home extends Vue {}
 </script>
 
-<style scoped>
-.home {
-  margin-top: 30px;
+<style lang="scss" scoped>
+h1 {
+  margin: 10px 0px 20px 0px;
 }
 
-.logo {
-  margin: 30px 40px 0px 40px;
+.msg {
+  margin: 20px;
+  font-size: 14px;
+  a {
+  color: #42b983;
+  text-decoration: none;
+  }
 }
 </style>
-
