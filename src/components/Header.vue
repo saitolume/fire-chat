@@ -1,13 +1,10 @@
 <template>
   <div class="header">
     <v-toolbar class="white" app>
-      <v-toolbar-title>
-        <router-link to="/">Fire Chat</router-link>
-      </v-toolbar-title>
+      <v-toolbar-title>Fire Chat</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn to="/signin" flat>Sign in</v-btn>
-        <v-btn @click="signOut" flat>Sign out</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </div>
@@ -32,12 +29,8 @@ export default class Header extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .v-toolbar__title {
   font-weight: bold;
-  a {
-    color: #2c3e50;
-    text-decoration: none;
-  }
 }
 </style>
