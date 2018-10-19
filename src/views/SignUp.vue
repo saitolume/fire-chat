@@ -1,7 +1,6 @@
 <template>
   <div class="sign-up">
     <h1>Sign up</h1>
-    <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
     <SignUpForm />
   </div>
 </template>
