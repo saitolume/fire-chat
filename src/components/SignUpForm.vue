@@ -1,10 +1,11 @@
 <template>
-  <div class="sign-in-form">
+  <div class="sign-up-form">
     <v-flex xs12 sm6 md3>
-      <v-text-field class="hoge" placeholder="メールアドレス" v-model="email"></v-text-field>
+      <v-text-field placeholder="メールアドレス" v-model="email"></v-text-field>
       <v-text-field placeholder="パスワード" v-model="password"></v-text-field>
+      <v-text-field placeholder="パスワード（再入力）" v-model="password"></v-text-field>
     </v-flex>
-    <v-btn @click="signIn" outline>サインイン</v-btn>
+    <v-btn @click="signUp" outline>サインアップ</v-btn>
   </div>
 </template>
 
@@ -13,15 +14,15 @@ import { Component, Vue, Provide } from 'vue-property-decorator';
 import firebase from 'firebase';
 
 @Component({})
-export default class SignInForm extends Vue {
+export default class SignUpForm extends Vue {
   @Provide() private email: string = '';
   @Provide() private password: string = '';
 
-  private signIn(): void {
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+  private signUp(): void {
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then(() => {
-        alert(`${this.email}でサインインしました。`);
-        this.$router.push('/chat');
+        alert(`${this.email}のアカウントを作成しました。`);
+        this.$router.push('/');
       })
       .catch((error) => {
         alert(error.message);
@@ -31,7 +32,7 @@ export default class SignInForm extends Vue {
 </script>
 
 <style scoped>
-.sign-in-form {
+.sign-up-form {
   margin-top: 20px;
   display: flex;
   flex-flow: column nowrap;
