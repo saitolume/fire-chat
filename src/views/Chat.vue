@@ -1,6 +1,6 @@
 <template>
   <div class="chat">
-    <h1>Chat Page</h1>
+    <h1>Chat</h1>
   </div>
 </template>
 
@@ -12,5 +12,7 @@ export default class Chat extends Vue {}
 </script>
 
 <style scoped>
-
+h1 {
+  margin: 10px 0px 20px 0px;
+}
 </style>

@@ -3,7 +3,7 @@
     <h1>Sign in</h1>
     <SignInForm />
     <div class="msg">
-      まだアカウントがない方は
+      アカウントがない方は
       <router-link to="/signup">こちら</router-link>
     </div>
   </div>
