@@ -6,6 +6,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
+        <v-btn to="/signin" flat>Sign in</v-btn>
         <v-btn @click="signOut" flat>Sign out</v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -31,9 +32,12 @@ export default class Header extends Vue {
 }
 </script>
 
-<style scoped>
-.v-toolbar__title a {
-  color: #2c3e50;
-  text-decoration: none;
+<style lang="scss" scoped>
+.v-toolbar__title {
+  font-weight: bold;
+  a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
 }
 </style>
