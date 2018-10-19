@@ -40,7 +40,11 @@ export default class SignUpForm extends Vue {
   align-items: center
 }
 
-button {
+.v-input {
+  width: 200px;
+}
+
+.v-btn {
   margin: 20px;
 }
 </style>
