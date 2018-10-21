@@ -26,10 +26,10 @@ export default class App extends Vue {
   private created() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.$store.commit('changeLoginStateTrue');
+        this.$store.dispatch('changeLoginState', true);
         console.log(this.$store.getters.loginState);
       } else {
-        this.$store.commit('changeLoginStateFalse');
+        this.$store.dispatch('changeLoginState', false);
         console.log(this.$store.getters.loginState);
       }
     });
