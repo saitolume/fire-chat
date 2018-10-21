@@ -1,13 +1,13 @@
 <template>
   <div class="header">
     <v-toolbar class="white" app>
-      <v-btn @click.stop="drawer = !drawer" icon large flat>
+      <v-btn @click.stop="drawer = !drawer" v-if="loginState()" icon large flat>
         <v-icon>account_circle</v-icon>
       </v-btn>
       <v-toolbar-title>Fire Chat</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items v-if="loginState = true">
-        <v-btn to="/signin" flat>Sign in</v-btn>
+      <v-toolbar-items>
+        <v-btn to="/signin" v-if="!loginState()" flat>Sign in</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -15,7 +15,7 @@
       <v-list>
         <v-list-tile avatar>
           <v-list-tile-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg">
+            <v-icon>account_circle</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>Name</v-list-tile-title>
@@ -37,12 +37,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 @Component({})
 export default class Header extends Vue {
   private drawer: boolean = false;
-  private loginState: boolean = false;
+
+  private loginState(): boolean {
+    return this.$store.getters.loginState;
+  }
 
   private signOut(): void {
     firebase.auth().signOut()
@@ -53,10 +56,6 @@ export default class Header extends Vue {
       .catch((error) => {
         alert(error.message);
       });
-  }
-
-  private getLoginState(): void {
-    this.loginState = this.$store.getters.loginState;
   }
 }
 </script>

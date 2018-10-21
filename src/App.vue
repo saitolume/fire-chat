@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
@@ -24,13 +24,11 @@ export default class App extends Vue {
   private loginState: boolean = false;
 
   private created() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.$store.dispatch('changeLoginState', true);
-        console.log(this.$store.getters.loginState);
+        this.$store.dispatch('updateLoginState', true);
       } else {
-        this.$store.dispatch('changeLoginState', false);
-        console.log(this.$store.getters.loginState);
+        this.$store.dispatch('updateLoginState', false);
       }
     });
   }

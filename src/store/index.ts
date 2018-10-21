@@ -14,11 +14,11 @@ const store = new Vuex.Store({
   },
   mutations: {
     setLoginState(state, value) {
-      state.loginState = value;
+      return state.loginState = value;
     },
   },
   actions: {
-    changeLoginState({ commit }, value) {
+    updateLoginState({ commit }, value) {
       commit('setLoginState', value);
     },
   },
