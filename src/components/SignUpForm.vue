@@ -2,8 +2,8 @@
   <div class="sign-up-form">
     <v-flex xs12 sm6 md3>
       <v-text-field placeholder="メールアドレス" v-model="email"></v-text-field>
-      <v-text-field placeholder="パスワード" v-model="password"></v-text-field>
-      <v-text-field placeholder="パスワード（再入力）" v-model="password"></v-text-field>
+      <v-text-field placeholder="パスワード" v-model="password" type="password"></v-text-field>
+      <v-text-field placeholder="パスワード（再入力）" v-model="password" type="password"></v-text-field>
     </v-flex>
     <v-btn @click="signUp" outline>サインアップ</v-btn>
   </div>
