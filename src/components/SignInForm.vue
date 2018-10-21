@@ -1,8 +1,8 @@
 <template>
   <div class="sign-in-form">
     <v-flex xs12 sm6 md3>
-      <v-text-field class="hoge" placeholder="メールアドレス" v-model="email"></v-text-field>
-      <v-text-field placeholder="パスワード" v-model="password"></v-text-field>
+      <v-text-field placeholder="メールアドレス" v-model="email"></v-text-field>
+      <v-text-field placeholder="パスワード" v-model="password" type="password"></v-text-field>
     </v-flex>
     <v-btn @click="signIn" outline>サインイン</v-btn>
   </div>
