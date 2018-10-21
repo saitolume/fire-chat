@@ -1,9 +1,9 @@
 <template>
   <div class="sign-up-form">
     <v-flex xs12 sm6 md3>
-      <v-text-field placeholder="メールアドレス" v-model="email"></v-text-field>
-      <v-text-field placeholder="パスワード" v-model="password" type="password"></v-text-field>
-      <v-text-field placeholder="パスワード（再入力）" v-model="password" type="password"></v-text-field>
+      <v-text-field v-model="email" placeholder="メールアドレス"></v-text-field>
+      <v-text-field v-model="password" type="password" placeholder="パスワード"></v-text-field>
+      <v-text-field v-model="password" type="password" placeholder="パスワード（再入力）"></v-text-field>
     </v-flex>
     <v-btn @click="signUp" outline>サインアップ</v-btn>
   </div>
@@ -22,7 +22,7 @@ export default class SignUpForm extends Vue {
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then(() => {
         alert(`${this.email}のアカウントを作成しました。`);
-        this.$router.push('/');
+        this.$router.push('/login');
       })
       .catch((error) => {
         alert(error.message);
