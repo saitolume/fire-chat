@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import firebase from 'firebase';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
@@ -19,7 +20,21 @@ import Footer from '@/components/Footer.vue';
     Footer,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private loginState: boolean = false;
+
+  private created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.commit('changeLoginStateTrue');
+        console.log(this.$store.getters.loginState);
+      } else {
+        this.$store.commit('changeLoginStateFalse');
+        console.log(this.$store.getters.loginState);
+      }
+    });
+  }
+}
 </script>
 
 <style>
