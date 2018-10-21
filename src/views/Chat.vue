@@ -1,6 +1,7 @@
 <template>
   <div class="chat">
     <h1>Chat</h1>
+    <p>開発中</p>
   </div>
 </template>
 

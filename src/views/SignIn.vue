@@ -31,7 +31,6 @@ h1 {
   font-size: 14px;
   a {
   color: #42b983;
-  text-decoration: none;
   }
 }
 </style>
