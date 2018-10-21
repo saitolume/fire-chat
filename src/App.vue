@@ -27,6 +27,7 @@ export default class App extends Vue {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch('updateLoginState', true);
+        this.$store.dispatch('updateEmail', user.email);
       } else {
         this.$store.dispatch('updateLoginState', false);
       }

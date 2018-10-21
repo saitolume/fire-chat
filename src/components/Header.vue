@@ -18,7 +18,7 @@
             <v-icon>account_circle</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>Name</v-list-tile-title>
+            <v-list-tile-title>{{ email() }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -45,6 +45,10 @@ export default class Header extends Vue {
 
   private loginState(): boolean {
     return this.$store.getters.loginState;
+  }
+
+  private email(): string {
+    return this.$store.getters.email;
   }
 
   private signOut(): void {
