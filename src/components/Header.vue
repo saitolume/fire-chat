@@ -4,7 +4,6 @@
       <v-btn @click.stop="drawer = !drawer" v-if="loginState()" icon large flat>
         <v-icon>account_circle</v-icon>
       </v-btn>
-      <v-toolbar-title>Fire Chat</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn to="/signin" v-if="!loginState()" flat>Sign in</v-btn>
@@ -23,10 +22,10 @@
         </v-list-tile>
       </v-list>
       <v-list>
-        <v-btn large flat>Profiel</v-btn>
+        <v-btn disabled large flat>Profiel</v-btn>
       </v-list>
       <v-list>
-        <v-btn large flat>Setting</v-btn>
+        <v-btn disabled large flat>Setting</v-btn>
       </v-list>
       <v-list>
         <v-btn @click="signOut" large flat>Sign out</v-btn>
@@ -54,6 +53,7 @@ export default class Header extends Vue {
   private signOut(): void {
     firebase.auth().signOut()
       .then(() => {
+        this.drawer = false;
         alert('サインアウトしました。');
         this.$router.push('/');
       })
@@ -64,12 +64,5 @@ export default class Header extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
-.v-toolbar__title {
-  font-weight: bold;
-}
-
-.v-toolbar__title:not(:first-child) {
-  margin-left: 0px;
-}
+<style scoped>
 </style>

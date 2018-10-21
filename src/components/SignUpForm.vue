@@ -3,7 +3,6 @@
     <v-flex xs12 sm6 md3>
       <v-text-field v-model="email" placeholder="メールアドレス"></v-text-field>
       <v-text-field v-model="password" type="password" placeholder="パスワード"></v-text-field>
-      <v-text-field v-model="password" type="password" placeholder="パスワード（再入力）"></v-text-field>
     </v-flex>
     <v-btn @click="signUp" outline>サインアップ</v-btn>
   </div>

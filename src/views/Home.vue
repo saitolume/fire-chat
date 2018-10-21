@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Home</h1>
     <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
-    <div class="msg">Welcome to Fire Chat!</div>
+    <p class="msg">Fire Chat へようこそ</p>
   </div>
 </template>
 
@@ -19,7 +19,6 @@ h1 {
 }
 
 .msg {
-  font-size: 20px;
   margin: 20px;
 }
 </style>
