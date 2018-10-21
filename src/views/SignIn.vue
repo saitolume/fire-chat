@@ -1,0 +1,37 @@
+<template>
+  <div class="sign-in">
+    <h1>Sign in</h1>
+    <SignInForm />
+    <div class="msg">
+      アカウントがない方は
+      <router-link to="/signup">こちら</router-link>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import SignInForm from '@/components/SignInForm.vue';
+
+@Component({
+  components: {
+    SignInForm,
+  },
+})
+export default class SignIn extends Vue {}
+</script>
+
+<style lang="scss" scoped>
+h1 {
+  margin: 10px 0px 20px 0px;
+}
+
+.msg {
+  margin-top: 30px;
+  font-size: 14px;
+  a {
+  color: #42b983;
+  text-decoration: none;
+  }
+}
+</style>

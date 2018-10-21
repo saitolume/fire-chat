@@ -14,6 +14,11 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/signin',
+      name: 'signin',
+      component: () => import('./views/SignIn.vue'),
+    },
+    {
       path: '/signup',
       name: 'signup',
       component: () => import('./views/SignUp.vue'),
@@ -22,6 +27,11 @@ export default new Router({
       path: '/chat',
       name: 'chat',
       component: () => import('./views/Chat.vue'),
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('./views/About.vue'),
     },
   ],
 });
