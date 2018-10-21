@@ -6,18 +6,30 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     loginState: false,
+    email: '',
   },
   getters: {
     loginState(state) {
       return state.loginState;
     },
+    email(state) {
+      return state.email;
+    },
   },
   mutations: {
-    changeLoginStateTrue(state) {
-      state.loginState = true;
+    setLoginState(state, value) {
+      state.loginState = value;
     },
-    changeLoginStateFalse(state) {
-      state.loginState = false;
+    setEmail(state, payload) {
+      state.email = payload.email;
+    },
+  },
+  actions: {
+    updateLoginState({ commit }, value) {
+      commit('setLoginState', value);
+    },
+    updateEmail({ commit }, email) {
+      commit('setEmail', { email });
     },
   },
 });
