@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import firebase from 'firebase';
 
 @Component({})
 export default class Footer extends Vue {}
