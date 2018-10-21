@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <Header />
-    <router-view />
+    <div class="content-area">
+      <router-view />
+    </div>
     <Footer />
   </v-app>
 </template>
@@ -27,6 +29,9 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   text-align: center;
+}
+
+.content-area {
   margin-top: 60px;
   padding-top: 30px;
 }
