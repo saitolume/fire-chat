@@ -6,7 +6,7 @@
       </v-btn>
       <v-toolbar-title>Fire Chat</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
+      <v-toolbar-items v-if="loginState = true">
         <v-btn to="/signin" flat>Sign in</v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -42,6 +42,7 @@ import firebase from 'firebase';
 @Component({})
 export default class Header extends Vue {
   private drawer: boolean = false;
+  private loginState: boolean = false;
 
   private signOut(): void {
     firebase.auth().signOut()
@@ -52,6 +53,10 @@ export default class Header extends Vue {
       .catch((error) => {
         alert(error.message);
       });
+  }
+
+  private getLoginState(): void {
+    this.loginState = this.$store.getters.loginState;
   }
 }
 </script>
