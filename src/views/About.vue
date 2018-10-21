@@ -1,6 +1,11 @@
 <template>
   <div class="about">
     <h1>About</h1>
+    <p>Fire Chat は Vue.js と Firebase で作られた</p>
+    <p>PWA 対応チャットアプリです</p>
+    <div class="footer">created by 
+      <a href="https://twitter.com/saitho_eku3">@saitho_eku3</a>
+    </div>
   </div>
 </template>
 
@@ -11,8 +16,15 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class About extends Vue {}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   margin: 10px 0px 20px 0px;
+}
+
+.footer {
+  margin-top: 270px;
+  a {
+    color: #42b983;
+  }
 }
 </style>

@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 @Component({})
 export default class SignInForm extends Vue {
