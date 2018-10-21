@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     },
     email(state) {
       return state.email;
-    }
+    },
   },
   mutations: {
     setLoginState(state, value) {
@@ -22,7 +22,7 @@ const store = new Vuex.Store({
     },
     setEmail(state, payload) {
       state.email = payload.email;
-    }
+    },
   },
   actions: {
     updateLoginState({ commit }, value) {
