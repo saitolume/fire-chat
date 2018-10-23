@@ -1,12 +1,17 @@
 <template>
   <div class="footer">
-    <v-bottom-nav :value="true" color="transparent" app>
+    <v-bottom-nav :value="true" app>
       <v-btn color="#2c3e50" to="/" flat>
         <span>Home</span>
         <v-icon>home</v-icon>
       </v-btn>
 
-      <v-btn color="#2c3e50" to="/chat" flat>
+      <v-btn color="#2c3e50" to="/chat" v-if="loginState()" flat>
+        <span>Chat</span>
+        <v-icon>textsms</v-icon>
+      </v-btn>
+
+      <v-btn color="#2c3e50" to="/chat" v-else disabled flat>
         <span>Chat</span>
         <v-icon>textsms</v-icon>
       </v-btn>
@@ -23,7 +28,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class Footer extends Vue {}
+export default class Footer extends Vue {
+  private loginState(): boolean {
+    return this.$store.getters.loginState;
+  }
+}
 </script>
 
 <style scoped>
