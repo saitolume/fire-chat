@@ -1,8 +1,8 @@
 <template>
   <div class="setting">
     <h1>Setting</h1>
-    <v-text-field label="ユーザー名" v-model="name" required></v-text-field>
-    <v-btn @click="save">保存</v-btn>
+    <v-text-field label="ユーザー名" v-model="name"></v-text-field>
+    <v-btn @click="save" color="success" outline>保存</v-btn>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class Setting extends Vue {
-  private name:  string = this.$store.getters.name;
+  private name: string = this.$store.getters.name;
 
   private save(): void {
     const user = firebase.auth().currentUser;
