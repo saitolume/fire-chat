@@ -17,7 +17,7 @@
             <v-icon>account_circle</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>{{ email() }}</v-list-tile-title>
+            <v-list-tile-title>{{ name() }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -25,7 +25,7 @@
         <v-btn disabled large flat>Profiel</v-btn>
       </v-list>
       <v-list>
-        <v-btn disabled large flat>Setting</v-btn>
+        <v-btn to="/setting" large flat>Setting</v-btn>
       </v-list>
       <v-list>
         <v-btn @click="signOut" large flat>Sign out</v-btn>
@@ -46,8 +46,8 @@ export default class Header extends Vue {
     return this.$store.getters.loginState;
   }
 
-  private email(): string {
-    return this.$store.getters.email;
+  private name(): string {
+    return this.$store.getters.name;
   }
 
   private signOut(): void {
@@ -63,6 +63,3 @@ export default class Header extends Vue {
   }
 }
 </script>
-
-<style scoped>
-</style>
