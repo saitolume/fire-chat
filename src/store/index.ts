@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     loginState: false,
     email: '',
+    name: '',
   },
   getters: {
     loginState(state) {
@@ -14,6 +15,9 @@ const store = new Vuex.Store({
     },
     email(state) {
       return state.email;
+    },
+    name(state) {
+      return state.name;
     },
   },
   mutations: {
@@ -23,6 +27,9 @@ const store = new Vuex.Store({
     setEmail(state, payload) {
       state.email = payload.email;
     },
+    setName(state, payload) {
+      state.name = payload.name;
+    },
   },
   actions: {
     updateLoginState({ commit }, value) {
@@ -30,6 +37,9 @@ const store = new Vuex.Store({
     },
     updateEmail({ commit }, email) {
       commit('setEmail', { email });
+    },
+    updateName({ commit }, name) {
+      commit('setName', { name });
     },
   },
 });
