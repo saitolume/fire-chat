@@ -21,16 +21,15 @@ import Footer from '@/components/Footer.vue';
   },
 })
 export default class App extends Vue {
-  private loginState: boolean = false;
-
   private created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.$store.dispatch('updateLoginState', true);
-        this.$store.dispatch('updateEmail', user.email);
-        this.$store.dispatch('updateName',  user.displayName);
+        this.$store.dispatch('updateLoginState',    true);
+        this.$store.dispatch('updateEmail',         user.email);
+        this.$store.dispatch('updateEmailVerified', user.emailVerified);
+        this.$store.dispatch('updateName',          user.displayName);
       } else {
-        this.$store.dispatch('updateLoginState', false);
+        this.$store.dispatch('updateLoginState',   false);
       }
     });
   }
