@@ -2,9 +2,9 @@
   <div class="sign-in-form">
     <v-flex xs12 sm6 md3>
       <v-text-field v-model="email" placeholder="メールアドレス"></v-text-field>
-      <v-text-field v-model="password" type="password" placeholder="パスワード"></v-text-field>
+      <v-text-field v-model="password" placeholder="パスワード" type="password"></v-text-field>
     </v-flex>
-    <v-btn @click="signIn" outline>サインイン</v-btn>
+    <v-btn @click="signIn" color="#42b983" outline>サインイン</v-btn>
   </div>
 </template>
 
