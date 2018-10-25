@@ -3,7 +3,12 @@
     <h1>Home</h1>
     <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
     <p class="msg">Fire Chat へようこそ</p>
-    <v-btn v-if="!emailVerified && loginState" @click="sendEmail" color="info" outline>認証メールを送信</v-btn>
+    <div class="warm" v-if="!emailVerified && loginState">
+      <v-alert :value="true" color="error" outline>
+      <p>まだアカウントは認証されていません</p>
+      <v-btn color="error" @click="sendEmail">認証メールを送信する</v-btn>
+      </v-alert>
+    </div>
   </div>
 </template>
 
@@ -25,11 +30,7 @@ export default class Home extends Vue {
     const user = firebase.auth().currentUser;
     if (user) {
       user.sendEmailVerification().then(() => {
-        console.log('送信しました');
-        alert(`
-          認証確認メールを送信しました。
-          リンクからアカウントを有効化してください。
-        `);
+        alert('認証メールを送信しました');
       }).catch((error) => {
         alert(error.message);
       });
@@ -38,12 +39,23 @@ export default class Home extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   margin: 10px 0px 20px 0px;
 }
 
 .msg {
   margin: 20px;
+}
+
+.warm {
+  max-width: 300px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  p {
+    margin: 0px;
+  }
 }
 </style>
