@@ -59,6 +59,7 @@ export default class Header extends Vue {
     firebase.auth().signOut()
       .then(() => {
         this.drawer = false;
+        this.$store.dispatch('updateEmailVerified', false);
         alert('サインアウトしました。');
         this.$router.push('/');
       })
