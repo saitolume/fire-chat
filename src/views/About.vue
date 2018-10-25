@@ -22,7 +22,11 @@ h1 {
 }
 
 .footer {
-  margin-top: 270px;
+  position: absolute;
+  bottom: 90px;
+  left: 0;
+  right: 0;
+  margin: auto;
   a {
     color: #42b983;
   }

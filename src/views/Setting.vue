@@ -2,7 +2,7 @@
   <div class="setting">
     <h1>Setting</h1>
     <v-text-field label="ユーザー名" v-model="name"></v-text-field>
-    <v-btn @click="save" color="success" outline>保存</v-btn>
+    <v-btn @click="save" color="#42b983" outline>保存</v-btn>
   </div>
 </template>
 
