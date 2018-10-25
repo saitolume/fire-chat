@@ -18,14 +18,12 @@ export default class SignUpForm extends Vue {
   private password: string = '';
 
   private signUp(): void {
-    firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-      .then(() => {
-        alert(`${this.email}のアカウントを作成しました。`);
-        this.$router.push('/');
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
+      alert(`${this.email}のアカウントを作成しました。`);
+      this.$router.push('/');
+    }).catch((error) => {
+      alert(error.message);
+    });
   }
 }
 </script>
