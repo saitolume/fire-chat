@@ -6,7 +6,7 @@
         <v-icon>home</v-icon>
       </v-btn>
 
-      <v-btn color="#2c3e50" to="/chat" v-if="emailVerified" flat>
+      <v-btn color="#2c3e50" to="/chat" v-if="loginState && emailVerified" flat>
         <span>Chat</span>
         <v-icon>textsms</v-icon>
       </v-btn>
@@ -31,6 +31,10 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class Footer extends Vue {
   private get emailVerified(): boolean {
     return this.$store.getters.emailVerified;
+  }
+
+  private get loginState(): boolean {
+    return this.$store.getters.loginState;
   }
 }
 </script>
