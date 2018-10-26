@@ -27,9 +27,12 @@ export default class Home extends Vue {
   }
 
   private sendEmail(): void {
+    const actionCodeSettings = {
+      url: `https://${window.location.host}`,
+    };
     const user = firebase.auth().currentUser;
     if (user) {
-      user.sendEmailVerification().then(() => {
+      user.sendEmailVerification(actionCodeSettings).then(() => {
         alert('認証メールを送信しました');
       }).catch((error) => {
         alert(error.message);
