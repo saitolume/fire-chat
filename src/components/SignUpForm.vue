@@ -1,8 +1,8 @@
 <template>
   <div class="sign-up-form">
     <v-flex xs12 sm6 md3>
-      <v-text-field v-model="email" placeholder="メールアドレス"></v-text-field>
-      <v-text-field v-model="password"  placeholder="パスワード" type="password"></v-text-field>
+      <v-text-field v-model="email" label="メールアドレス"></v-text-field>
+      <v-text-field v-model="password" label="パスワード" type="password"></v-text-field>
     </v-flex>
     <v-btn @click="signUp" color="#42b983" outline>サインアップ</v-btn>
   </div>
