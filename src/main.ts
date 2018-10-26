@@ -12,12 +12,21 @@ import './registerServiceWorker';
 Vue.config.productionTip = false;
 
 const config = {
-  apiKey: 'AIzaSyDR5YMxACiJmAXU2-ai7fd902UHQ8Toa6I',
-  authDomain: 'fire-chat-165bc.firebaseapp.com',
-  databaseURL: 'https://fire-chat-165bc.firebaseio.com',
-  projectId: 'fire-chat-165bc',
-  storageBucket: 'fire-chat-165bc.appspot.com',
-  messagingSenderId: '69151851685',
+  //  Production
+  // apiKey:            'AIzaSyDR5YMxACiJmAXU2-ai7fd902UHQ8Toa6I',
+  // authDomain:        'fire-chat-165bc.firebaseapp.com',
+  // databaseURL:       'https://fire-chat-165bc.firebaseio.com',
+  // projectId:         'fire-chat-165bc',
+  // storageBucket:     'fire-chat-165bc.appspot.com',
+  // messagingSenderId: '69151851685',
+
+  //  Staging
+  apiKey:            'AIzaSyALjVHuHDcsLN1zG9xdbyIJPGDkRekFLqg',
+  authDomain:        'fire-chat-staging.firebaseapp.com',
+  databaseURL:       'https://fire-chat-staging.firebaseio.com',
+  projectId:         'fire-chat-staging',
+  storageBucket:     'fire-chat-staging.appspot.com',
+  messagingSenderId: '97524655712',
 };
 firebase.initializeApp(config);
 
