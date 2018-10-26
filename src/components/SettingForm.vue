@@ -42,7 +42,7 @@ export default class SettingForm extends Vue {
   align-items: center
 }
 .v-input {
-  width: 200px;
+  width: 210px;
 }
 
 .v-btn {
