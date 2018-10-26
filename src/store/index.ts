@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     loginState: false,
     email: '',
+    emailVerified: false,
     name: '',
   },
   getters: {
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
     },
     email(state) {
       return state.email;
+    },
+    emailVerified(state) {
+      return state.emailVerified;
     },
     name(state) {
       return state.name;
@@ -27,6 +31,9 @@ const store = new Vuex.Store({
     setEmail(state, payload) {
       state.email = payload.email;
     },
+    setEmailVerified(state, payload) {
+      state.emailVerified = payload.emailVerified;
+    },
     setName(state, payload) {
       state.name = payload.name;
     },
@@ -37,6 +44,9 @@ const store = new Vuex.Store({
     },
     updateEmail({ commit }, email) {
       commit('setEmail', { email });
+    },
+    updateEmailVerified({ commit }, emailVerified) {
+      commit('setEmailVerified', { emailVerified });
     },
     updateName({ commit }, name) {
       commit('setName', { name });

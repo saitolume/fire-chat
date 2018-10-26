@@ -2,7 +2,7 @@
   <div class="setting">
     <h1>Setting</h1>
     <v-text-field label="ユーザー名" v-model="name"></v-text-field>
-    <v-btn @click="save" color="#42b983" outline>保存</v-btn>
+    <v-btn @click="saveProfile" color="#42b983" outline>保存</v-btn>
   </div>
 </template>
 
@@ -14,12 +14,12 @@ import firebase from 'firebase/app';
 export default class Setting extends Vue {
   private name: string = this.$store.getters.name;
 
-  private save(): void {
+  private saveProfile(): void {
     const user = firebase.auth().currentUser;
     if (user) {
       user.updateProfile({
         displayName: this.name,
-        photoURL: null,
+        photoURL:    null,
       }).then(() => {
         this.$store.dispatch('updateName', user.displayName);
         alert('保存しました。');
