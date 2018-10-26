@@ -3,8 +3,7 @@
     <h1>Sign in</h1>
     <SignInForm />
     <div class="msg">
-      アカウントがない方は
-      <router-link to="/signup">こちら</router-link>
+      <router-link to="/signup">アカウントを作成する</router-link>
     </div>
   </div>
 </template>
@@ -31,6 +30,7 @@ h1 {
   font-size: 14px;
   a {
   color: #42b983;
+  text-decoration: none;
   }
 }
 </style>
