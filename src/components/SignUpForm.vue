@@ -1,11 +1,13 @@
 <template>
   <div class="sign-up-form">
-    <v-flex xs12 sm6 md3>
-      <v-text-field v-model="email" label="メールアドレス"></v-text-field>
-      <v-text-field v-model="password" label="パスワード" type="password" hint="6文字以上"></v-text-field>
-      <v-text-field v-model="passwordAgain" label="パスワード（再入力）" type="password" hint="6文字以上"></v-text-field>
-    </v-flex>
-    <v-btn @click="signUp" color="#42b983" outline>サインアップ</v-btn>
+    <v-form>
+      <v-flex xs12 sm6 md3>
+        <v-text-field v-model="email" label="メールアドレス"></v-text-field>
+        <v-text-field v-model="password" label="パスワード" type="password" hint="6文字以上"></v-text-field>
+        <v-text-field v-model="passwordAgain" label="パスワード（再入力）" type="password" hint="6文字以上"></v-text-field>
+      </v-flex>
+      <v-btn @click="signUp" color="#42b983" outline>サインアップ</v-btn>
+    </v-form>
   </div>
 </template>
 
