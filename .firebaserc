@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "fire-chat-165bc"
+    "default": "fire-chat-165bc",
+    "staging": "fire-chat-staging",
+    "production": "fire-chat-165bc"
   }
 }
