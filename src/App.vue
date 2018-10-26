@@ -29,7 +29,7 @@ export default class App extends Vue {
         this.$store.dispatch('updateEmailVerified', user.emailVerified);
         this.$store.dispatch('updateName',          user.displayName);
       } else {
-        this.$store.dispatch('updateLoginState',   false);
+        this.$store.dispatch('updateLoginState',    false);
       }
     });
   }
@@ -48,10 +48,5 @@ export default class App extends Vue {
 .content-area {
   margin-top: 60px;
   padding-top: 30px;
-}
-
-a {
-    color: #2c3e50;
-    text-decoration: none;
 }
 </style>

@@ -38,6 +38,3 @@ export default class Footer extends Vue {
   }
 }
 </script>
-
-<style scoped>
-</style>
