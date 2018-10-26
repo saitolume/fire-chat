@@ -26,7 +26,7 @@ h1 {
 }
 
 .msg {
-  margin-top: 30px;
+  margin-top: 60px;
   font-size: 14px;
   a {
   color: #42b983;

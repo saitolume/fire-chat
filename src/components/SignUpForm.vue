@@ -2,7 +2,8 @@
   <div class="sign-up-form">
     <v-flex xs12 sm6 md3>
       <v-text-field v-model="email" label="メールアドレス"></v-text-field>
-      <v-text-field v-model="password" label="パスワード" type="password"></v-text-field>
+      <v-text-field v-model="password" label="パスワード" type="password" hint="6文字以上"></v-text-field>
+      <v-text-field v-model="passwordAgain" label="パスワード（再入力）" type="password" hint="6文字以上"></v-text-field>
     </v-flex>
     <v-btn @click="signUp" color="#42b983" outline>サインアップ</v-btn>
   </div>
@@ -14,16 +15,23 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class SignUpForm extends Vue {
-  private email:    string = '';
-  private password: string = '';
+  private email:          string = '';
+  private password:       string = '';
+  private passwordAgain:  string = '';
 
   private signUp(): void {
-    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
-      alert(`${this.email}のアカウントを作成しました。`);
-      this.$router.push('/');
-    }).catch((error) => {
-      alert(error.message);
-    });
+    if (this.password === this.passwordAgain) {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
+        alert(`${this.email}のアカウントを作成しました。`);
+        this.$router.push('/');
+      }).catch((error) => {
+        alert(error.message);
+      });
+    } else {
+      this.password = '';
+      this.passwordAgain = '';
+      alert('パスワードが一致しません。');
+    }
   }
 }
 </script>
@@ -42,6 +50,6 @@ export default class SignUpForm extends Vue {
 }
 
 .v-btn {
-  margin: 20px;
+  margin-top: 35px;
 }
 </style>
