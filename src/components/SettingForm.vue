@@ -21,7 +21,7 @@ import firebase from 'firebase/app';
 export default class SettingForm extends Vue {
   private name: string = this.$store.getters.name;
 
-  public required(value: string): string | boolean {
+  private required(value: string): string | boolean {
     return value ? true : '入力してください';
   }
 

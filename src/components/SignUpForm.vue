@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import firebase from 'firebase/app';
 
 @Component({})
@@ -46,7 +46,7 @@ export default class SignUpForm extends Vue {
   private password:       string  = '';
   private passwordAgain:  string  = '';
 
-  public required(value: string): string | boolean {
+  private required(value: string): string | boolean {
     return value ? true : '入力してください';
   }
 
