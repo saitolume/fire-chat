@@ -27,7 +27,7 @@ export default class SettingForm extends Vue {
 
   private saveProfile(): void {
     const user = firebase.auth().currentUser;
-    if (user) {
+    if (user && this.name) {
       user.updateProfile({
         displayName: this.name,
         photoURL:    null,
@@ -37,6 +37,8 @@ export default class SettingForm extends Vue {
       }).catch((error) => {
         alert(error.message);
       });
+    } else if (!this.name) {
+      alert('ユーザー名を入力してください');
     }
   }
 }
