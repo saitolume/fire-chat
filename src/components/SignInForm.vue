@@ -1,31 +1,39 @@
 <template>
   <div class="sign-in-form">
-    <v-flex xs12 sm6 md3>
-      <v-text-field v-model="email" placeholder="メールアドレス"></v-text-field>
-      <v-text-field v-model="password" placeholder="パスワード" type="password"></v-text-field>
-    </v-flex>
-    <v-btn @click="signIn" color="#42b983" outline>サインイン</v-btn>
+    <v-form>
+      <v-flex xs12 sm6 md3>
+        <v-text-field v-model="email" label="メールアドレス"></v-text-field>
+
+        <v-text-field
+          label="パスワード"
+          v-model="password"
+          :append-icon="show ? 'visibility_off' : 'visibility'"
+          :type="show ? 'text' : 'password'"
+          @click:append="show = !show"
+        ></v-text-field>
+      </v-flex>
+      <v-btn @click="signIn" color="#42b983" outline>サインイン</v-btn>
+    </v-form>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import firebase from 'firebase/app';
 
 @Component({})
 export default class SignInForm extends Vue {
-  private email:    string = '';
-  private password: string = '';
+  private show:     boolean = false;
+  private email:    string  = '';
+  private password: string  = '';
 
   private signIn(): void {
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(() => {
-        alert(`${this.email}でサインインしました。`);
-        this.$router.push('/');
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
+      alert(`${this.email}でサインインしました。`);
+      this.$router.push('/');
+    }).catch((error) => {
+      alert(error.message);
+    });
   }
 }
 </script>
@@ -40,7 +48,7 @@ export default class SignInForm extends Vue {
 }
 
 .v-input {
-  width: 200px;
+  width: 210px;
 }
 
 .v-btn {
