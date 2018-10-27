@@ -5,8 +5,8 @@
         <v-text-field v-model="email" label="メールアドレス"></v-text-field>
 
         <v-text-field
-          v-model="password"
           label="パスワード"
+          v-model="password"
           :append-icon="show ? 'visibility_off' : 'visibility'"
           :type="show ? 'text' : 'password'"
           @click:append="show = !show"

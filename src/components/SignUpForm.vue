@@ -2,7 +2,11 @@
   <div class="sign-up-form">
     <v-form>
       <v-flex xs12 sm6 md3>
-        <v-text-field v-model="email" label="メールアドレス"></v-text-field>
+        <v-text-field
+          label="メールアドレス"
+          v-model="email"
+          :rules="[required]"
+        ></v-text-field>
 
         <v-text-field
           v-model="password"
@@ -10,7 +14,9 @@
           hint="6文字以上"
           :append-icon="show ? 'visibility_off' : 'visibility'"
           :type="show ? 'text' : 'password'"
+          :rules="[required]"
           @click:append="show = !show"
+          counter
         ></v-text-field>
 
         <v-text-field
@@ -19,7 +25,9 @@
           hint="6文字以上"
           :append-icon="show ? 'visibility_off' : 'visibility'"
           :type="show ? 'text' : 'password'"
+          :rules="[required]"
           @click:append="show = !show"
+          counter
         ></v-text-field>
       </v-flex>
       <v-btn @click="signUp" color="#42b983" outline>サインアップ</v-btn>
@@ -37,6 +45,10 @@ export default class SignUpForm extends Vue {
   private email:          string  = '';
   private password:       string  = '';
   private passwordAgain:  string  = '';
+
+  public required(value: string): string | boolean {
+    return value ? true : '入力してください';
+  }
 
   private signUp(): void {
     if (this.password === this.passwordAgain) {
