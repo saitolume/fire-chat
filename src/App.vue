@@ -49,4 +49,8 @@ export default class App extends Vue {
   margin-top: 60px;
   padding-top: 30px;
 }
+
+a {
+  text-decoration: none;
+}
 </style>
