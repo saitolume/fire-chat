@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import firebase from 'firebase/app';
 
 @Component({})
