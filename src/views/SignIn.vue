@@ -27,10 +27,8 @@ h1 {
 
 .msg {
   margin-top: 60px;
-  font-size: 14px;
   a {
-  color: #42b983;
-  text-decoration: none;
+    color: #42b983;
   }
 }
 </style>

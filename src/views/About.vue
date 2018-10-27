@@ -23,7 +23,7 @@ h1 {
 
 .footer {
   position: absolute;
-  bottom: 90px;
+  bottom: 110px;
   left: 0;
   right: 0;
   margin: auto;
