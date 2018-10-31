@@ -53,8 +53,10 @@ export default class SignUpForm extends Vue {
   private signUp(): void {
     if (this.password === this.passwordAgain) {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
-        alert(`${this.email}のアカウントを作成しました。`);
-        this.$router.push('/');
+        alert(`
+        アカウントを作成しました。
+        続いてユーザー名を設定してください。`);
+        this.$router.push('/setting');
       }).catch((error) => {
         alert(error.message);
       });
