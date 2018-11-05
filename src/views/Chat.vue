@@ -28,9 +28,9 @@ export default class Chat extends Vue {
     return this.$store.getters.loginState;
   }
 
-  private get uid(): string | null{
+  private get uid(): string {
     const user = firebase.auth().currentUser;
-    return user ? user.uid : null;
+    return user ? user.uid : '';
   }
 
   private sendMessage() {
@@ -39,7 +39,7 @@ export default class Chat extends Vue {
         uid:  this.uid,
         name: this.name,
         text: this.messageText,
-        createdAt: Date.now(),
+        createdAt: Date.now(), //TODO いい感じのタイムスタンプにする
       });
     } else if (!this.loginState) {
       alert('サインインしてください。');
@@ -47,7 +47,7 @@ export default class Chat extends Vue {
     } else if (!this.messageText) {
       alert('文字を入力してください。');
     } else {
-      alert('送信に失敗しました。')
+      alert('送信に失敗しました。');
     }
     this.messageText = '';
   }
@@ -67,12 +67,12 @@ export default class Chat extends Vue {
   }
 }
 
-// button {
-//   margin: 0px;
-//   width: 23%;
-//   height: 49px;
-//   position: absolute;
-//   right: 0px;
-//   bottom: 56px;
-// }
+.v-btn {
+  position: absolute;
+  right: 0px;
+  bottom: 56px;
+  margin: 0px;
+  width: 23%;
+  height: 48px;
+}
 </style>
