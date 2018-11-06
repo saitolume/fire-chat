@@ -1,5 +1,8 @@
 <template>
   <div class="chat">
+    <div v-for="item in messages" :key="item.timestamp">
+      <p class="message">{{ item.name }} : {{ item.content }}</p>
+    </div>
     <div class="message-form">
       <v-text-field
         v-model="messageText"
@@ -7,7 +10,7 @@
         solo
       ></v-text-field>
     </div>
-      <v-btn @click="sendMessage" color="success" small>送信</v-btn>
+    <v-btn @click="sendMessage" color="success" small>送信</v-btn>
   </div>
 </template>
 
@@ -17,8 +20,10 @@ import firebase from 'firebase';
 
 @Component({})
 export default class Chat extends Vue {
-  private messages:    string[] = [];
-  private messageText: string   = '';
+  private messages: any[] = [
+    // { uid: 0, name: 'saito,', text: 'hogehoge', timestamp: 201811112359 },
+  ];
+  private messageText: string = '';
 
   private get name(): string {
     return this.$store.getters.name;
@@ -33,13 +38,13 @@ export default class Chat extends Vue {
     return user ? user.uid : '';
   }
 
-  private sendMessage() {
+  private sendMessage(): void {
     if (this.loginState && this.messageText) {
       firebase.firestore().collection('messages').add({
-        uid:  this.uid,
-        name: this.name,
-        text: this.messageText,
-        createdAt: Date.now(), //TODO いい感じのタイムスタンプにする
+        uid:       this.uid,
+        name:      this.name,
+        content:   this.messageText,
+        timestamp: Date.now(),
       });
     } else if (!this.loginState) {
       alert('サインインしてください。');
@@ -51,10 +56,27 @@ export default class Chat extends Vue {
     }
     this.messageText = '';
   }
+
+  private loadMessage(): void {
+    firebase.firestore().collection('messages').get().then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        this.messages.push(doc.data());
+      });
+    });
+  }
+
+  private created() {
+    this.loadMessage();
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.message {
+  margin: 0px 0px 5px 40px;
+  text-align: left;
+}
+
 .message-form {
   width: 77%;
   margin-bottom: 28px;

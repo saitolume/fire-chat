@@ -32,7 +32,7 @@ export default class SettingForm extends Vue {
         displayName: this.name,
         photoURL:    null,
       }).then(() => {
-        this.$store.dispatch('updateName', user.displayName);
+        this.$store.dispatch('updateName', this.name);
         alert('保存しました。');
       }).catch((error) => {
         alert(error.message);
