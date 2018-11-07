@@ -1,7 +1,7 @@
 <template>
   <div class="chat">
     <div v-for="item in messages" :key="item.timestamp">
-      <p class="message">{{ item.name }} : {{ item.content }}</p>
+      <p class="message">{{ item.name }} : {{ item.text }}</p>
     </div>
     <div class="message-form">
       <v-text-field
@@ -16,13 +16,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 @Component({})
 export default class Chat extends Vue {
-  private messages: any[] = [
-    // { uid: 0, name: 'saito,', text: 'hogehoge', timestamp: 201811112359 },
-  ];
+  // TODO messagesをジェネリック型でシンプルにする
+  private messages: { name: string; text: string; timestamp: number; uid: string }[] = [];
   private messageText: string = '';
 
   private get name(): string {
@@ -41,32 +40,34 @@ export default class Chat extends Vue {
   private sendMessage(): void {
     if (this.loginState && this.messageText) {
       firebase.firestore().collection('messages').add({
-        uid:       this.uid,
-        name:      this.name,
-        content:   this.messageText,
+        uid:  this.uid,
+        name: this.name,
+        text: this.messageText,
         timestamp: Date.now(),
+      }).catch((error) => {
+        alert(error.message);
       });
     } else if (!this.loginState) {
       alert('サインインしてください。');
       this.$router.push('/');
     } else if (!this.messageText) {
       alert('文字を入力してください。');
-    } else {
-      alert('送信に失敗しました。');
     }
     this.messageText = '';
   }
 
-  private loadMessage(): void {
+  private fetchMessages(): void {
     firebase.firestore().collection('messages').get().then((snapshot) => {
+      const messages: any[] = [];
       snapshot.docs.forEach((doc) => {
-        this.messages.push(doc.data());
+        messages.push(doc.data());
       });
+      this.messages = messages.slice().sort((a, b): number => a.timestamp - b.timestamp);
     });
   }
 
-  private created() {
-    this.loadMessage();
+  private created(): void {
+    this.fetchMessages();
   }
 }
 </script>
