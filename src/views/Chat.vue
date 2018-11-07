@@ -17,11 +17,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import firebase from 'firebase/app';
+import Message from '@/types/message';
 
 @Component({})
 export default class Chat extends Vue {
-  // TODO messagesをジェネリック型でシンプルにする
-  private messages: { name: string; text: string; timestamp: number; uid: string }[] = [];
+  private messages: Message[] = [/* { name: string text: string timestamp: number uid: string } */];
   private messageText: string = '';
 
   private get name(): string {
@@ -40,10 +40,10 @@ export default class Chat extends Vue {
   private sendMessage(): void {
     if (this.loginState && this.messageText) {
       firebase.firestore().collection('messages').add({
-        uid:  this.uid,
-        name: this.name,
-        text: this.messageText,
+        name:      this.name,
+        text:      this.messageText,
         timestamp: Date.now(),
+        uid:       this.uid,
       }).catch((error) => {
         alert(error.message);
       });
