@@ -1,10 +1,12 @@
 <template>
   <div class="chat">
-    <div v-for="item in messages" :key="item.timestamp">
-      <p class="message">{{ item.name }} : {{ item.text }}</p>
+    <div class="message-list">
+      <div class="message" v-for="item in messages" :key="item.timestamp">
+        {{ item.name }} : {{ item.text }}
+      </div>
     </div>
     <v-text-field
-      class="message-field"
+      class="message-input"
       v-model="messageText"
       placeholder="メッセージを入力"
       solo
@@ -19,17 +21,19 @@ import { Component, Vue } from 'vue-property-decorator';
 import firebase from 'firebase/app';
 import Message from '@/types/message';
 
+const db = firebase.firestore();
+
 @Component({})
 export default class Chat extends Vue {
   private messages: Message[] = [/* { name: string text: string timestamp: number uid: string } */];
   private messageText: string = '';
 
-  private get name(): string {
-    return this.$store.getters.name;
-  }
-
   private get loginState(): string {
     return this.$store.getters.loginState;
+  }
+
+  private get name(): string {
+    return this.$store.getters.name;
   }
 
   private get uid(): string {
@@ -37,9 +41,13 @@ export default class Chat extends Vue {
     return user ? user.uid : '';
   }
 
+  private scrollBottom() {
+    window.scrollTo(0, document.body.clientHeight);
+  }
+
   private sendMessage(): void {
     if (this.messageText) {
-      firebase.firestore().collection('messages').add({
+      db.collection('messages').add({
         name:      this.name,
         text:      this.messageText,
         timestamp: Date.now(),
@@ -52,7 +60,7 @@ export default class Chat extends Vue {
   }
 
   private fetchMessages(): void {
-    firebase.firestore().collection('messages').get().then((snapshot) => {
+    db.collection('messages').get().then((snapshot) => {
       // 型指定した配列に直接Firestoreのドキュメントを入れることはできない
       const messages: any[] = [];
       snapshot.docs.forEach((doc) => {
@@ -62,14 +70,19 @@ export default class Chat extends Vue {
     });
   }
 
-  private scrollBottom() {
-    this.$nextTick(() => {
-      window.scrollTo(0, document.body.clientHeight);
+  private refreshMessage(): void {
+    db.collection('messages').onSnapshot((snapshot) => {
+      const messages: any[] = [];
+      snapshot.forEach((doc) => {
+        messages.push(doc.data());
+      });
+      this.messages = messages.sort((a, b) => a.timestamp - b.timestamp);
     });
   }
 
   private created(): void {
     this.fetchMessages();
+    this.refreshMessage();
   }
 
   private updated(): void {
@@ -80,11 +93,15 @@ export default class Chat extends Vue {
 
 <style lang="scss" scoped>
 .message {
-  margin: 0px 0px 50px 40px;
+  margin-bottom: 20px;
   text-align: left;
 }
 
-.message-field {
+.message-list {
+  margin: 0px 0px 130px 40px;
+}
+
+.message-input {
   width: 77%;
   margin-bottom: 28px;
   position: fixed;
