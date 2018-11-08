@@ -53,10 +53,10 @@ export default class Chat extends Vue {
         timestamp: Date.now(),
         uid:       this.uid,
       });
+      this.messageText = '';
     } else if (!this.messageText) {
       alert('文字を入力してください。');
     }
-    this.messageText = '';
   }
 
   private fetchMessages(): void {
@@ -70,7 +70,8 @@ export default class Chat extends Vue {
     });
   }
 
-  private refreshMessage(): void {
+  // TODO: 追加されたmessageだけを取得するように改善する
+  private refreshMessages(): void {
     db.collection('messages').onSnapshot((snapshot) => {
       const messages: any[] = [];
       snapshot.forEach((doc) => {
@@ -82,7 +83,7 @@ export default class Chat extends Vue {
 
   private created(): void {
     this.fetchMessages();
-    this.refreshMessage();
+    this.refreshMessages();
   }
 
   private updated(): void {

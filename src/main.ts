@@ -29,11 +29,8 @@ const config = {
   storageBucket:     'fire-chat-staging.appspot.com',
   messagingSenderId: '97524655712',
 };
-
 firebase.initializeApp(config);
-
-const firestore = firebase.firestore();
-firestore.settings({ timestampsInSnapshots: true });
+firebase.firestore().settings({ timestampsInSnapshots: true });
 
 Vue.use(Vuetify, {
   iconfont: 'mdi',
