@@ -9,6 +9,7 @@
       placeholder="メッセージを入力"
       solo
     ></v-text-field>
+    <!-- HACK: ログアウト状態でもchatを開ける問題を暫定的に対処 -->
     <v-btn @click="sendMessage" :disabled="!loginState" color="success" small>送信</v-btn>
   </div>
 </template>
@@ -61,8 +62,18 @@ export default class Chat extends Vue {
     });
   }
 
+  private scrollBottom() {
+    this.$nextTick(() => {
+      window.scrollTo(0, document.body.clientHeight);
+    });
+  }
+
   private created(): void {
     this.fetchMessages();
+  }
+
+  private updated(): void {
+    this.scrollBottom();
   }
 }
 </script>
