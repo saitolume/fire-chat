@@ -3,14 +3,13 @@
     <div v-for="item in messages" :key="item.timestamp">
       <p class="message">{{ item.name }} : {{ item.text }}</p>
     </div>
-    <div class="message-form">
-      <v-text-field
-        v-model="messageText"
-        placeholder="メッセージを入力"
-        solo
-      ></v-text-field>
-    </div>
-    <v-btn @click="sendMessage" color="success" small>送信</v-btn>
+    <v-text-field
+      class="message-field"
+      v-model="messageText"
+      placeholder="メッセージを入力"
+      solo
+    ></v-text-field>
+    <v-btn @click="sendMessage" :disabled="!loginState" color="success" small>送信</v-btn>
   </div>
 </template>
 
@@ -38,18 +37,13 @@ export default class Chat extends Vue {
   }
 
   private sendMessage(): void {
-    if (this.loginState && this.messageText) {
+    if (this.messageText) {
       firebase.firestore().collection('messages').add({
         name:      this.name,
         text:      this.messageText,
         timestamp: Date.now(),
         uid:       this.uid,
-      }).catch((error) => {
-        alert(error.message);
       });
-    } else if (!this.loginState) {
-      alert('サインインしてください。');
-      this.$router.push('/');
     } else if (!this.messageText) {
       alert('文字を入力してください。');
     }
@@ -58,11 +52,12 @@ export default class Chat extends Vue {
 
   private fetchMessages(): void {
     firebase.firestore().collection('messages').get().then((snapshot) => {
+      // 型指定した配列に直接Firestoreのドキュメントを入れることはできない
       const messages: any[] = [];
       snapshot.docs.forEach((doc) => {
         messages.push(doc.data());
       });
-      this.messages = messages.slice().sort((a, b): number => a.timestamp - b.timestamp);
+      this.messages = messages.sort((a, b) => a.timestamp - b.timestamp);
     });
   }
 
@@ -74,14 +69,14 @@ export default class Chat extends Vue {
 
 <style lang="scss" scoped>
 .message {
-  margin: 0px 0px 5px 40px;
+  margin: 0px 0px 50px 40px;
   text-align: left;
 }
 
-.message-form {
+.message-field {
   width: 77%;
   margin-bottom: 28px;
-  position: absolute;
+  position: fixed;
   left: 0px;
   bottom: 0px;
   .v-input {
@@ -91,7 +86,7 @@ export default class Chat extends Vue {
 }
 
 .v-btn {
-  position: absolute;
+  position: fixed;
   right: 0px;
   bottom: 56px;
   margin: 0px;
