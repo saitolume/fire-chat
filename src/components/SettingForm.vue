@@ -2,20 +2,21 @@
   <div class="setting-form">
     <v-form>
       <v-flex xs12 sm6>
+        <!-- 通常 -->
         <v-text-field
           label="ユーザー名"
           v-if="!loading && !saved"
           v-model="name"
           :rules="[required]"
         ></v-text-field>
-
+        <!-- ローディング中 -->
         <v-text-field
           label="ユーザー名"
           v-else-if="loading"
           v-model="name"
           loading
         ></v-text-field>
-
+        <!-- 保存成功後 -->
         <v-text-field
           label="ユーザー名"
           v-else-if="!loading && saved"
@@ -35,9 +36,9 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class SettingForm extends Vue {
-  private name: string = this.$store.getters.name;
+  private name:    string  = this.$store.getters.name;
   private loading: boolean = false;
-  private saved: boolean = false;
+  private saved:   boolean = false;
 
   private required(value: string): string | boolean {
     return value ? true : '入力してください';
