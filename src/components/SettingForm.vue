@@ -2,6 +2,7 @@
   <div class="setting-form">
     <v-form>
       <v-flex xs12 sm6>
+        <!-- TODO: フォームの表示切り替えをもっとキレイにする -->
         <!-- 通常 -->
         <v-text-field
           label="ユーザー名"
@@ -56,6 +57,17 @@ export default class SettingForm extends Vue {
         this.loading = false;
         this.saved = true;
       });
+    }
+  }
+
+  private changeSavedFalse(): void {
+    this.saved = false;
+  }
+
+  private updated(): void {
+    // プロフィール保存後の表示を2秒で終わらせる
+    if (this.saved) {
+      setTimeout(this.changeSavedFalse, 2000);
     }
   }
 }
