@@ -5,14 +5,19 @@
         <v-text-field
           label="ユーザー名"
           v-model="name"
-          :rules="[required]"
+          :disabled="loading"
           :loading="loading"
-          :success="saved"
+          :rules="[required]"
           :success-messages="saved ? '保存しました' : ''"
-          @focus="saved = false"
+          @focus="resetFormLook"
         ></v-text-field>
       </v-flex>
-      <v-btn @click="saveProfile" color="#42b983" :disabled="!name" outline>保存</v-btn>
+      <v-btn
+        color="#42b983"
+        :disabled="!name || loading"
+        @click="saveProfile"
+        outline
+      >保存</v-btn>
     </v-form>
   </div>
 </template>
@@ -23,7 +28,7 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class SettingForm extends Vue {
-  private name:    string  = this.$store.getters.name;
+  private name:    string  = this.$store.getters.name; // ページを更新すると空になる
   private loading: boolean = false;
   private saved:   boolean = false;
 
@@ -33,6 +38,7 @@ export default class SettingForm extends Vue {
 
   private saveProfile(): void {
     this.loading = true;
+    this.saved   = false; // 連続タップで表示が崩れないように
     const user = firebase.auth().currentUser;
     if (user) {
       user.updateProfile({
@@ -40,21 +46,19 @@ export default class SettingForm extends Vue {
         photoURL:    null,
       }).then(() => {
         this.$store.dispatch('updateName', this.name);
-        this.loading = false;
-        this.saved = true;
+        // 保存後のフォームの見た目を調整（0.8s読み込み→1.5sメッセージ表示）
+        setTimeout(() => {
+          this.loading = false;
+          this.saved   = true;
+          setTimeout(this.resetFormLook, 1500);
+        }, 800);
       });
     }
   }
 
-  private changeSavedFalse(): void {
-    this.saved = false;
-  }
-
-  private updated(): void {
-    // プロフィール保存後の表示を2秒で終わらせる
-    if (this.saved) {
-      setTimeout(this.changeSavedFalse, 2000);
-    }
+  private resetFormLook(): void {
+    this.loading = false;
+    this.saved   = false;
   }
 }
 </script>
