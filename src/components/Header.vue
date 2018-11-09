@@ -56,13 +56,14 @@ export default class Header extends Vue {
   }
 
   private signOut(): void {
-    firebase.auth().signOut().then(() => {
-      this.drawer = false;
-      alert('サインアウトしました。');
-      this.$router.push('/');
-    }).catch((error) => {
-      alert(error.message);
-    });
+    if (confirm('サインアウトしますか？')) {
+        firebase.auth().signOut().then(() => {
+        this.$router.push('/');
+      }).catch((error) => {
+        alert(error.message);
+      });
+    }
+    this.drawer = false;
   }
 }
 </script>

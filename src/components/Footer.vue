@@ -6,12 +6,12 @@
         <v-icon>home</v-icon>
       </v-btn>
 
-      <v-btn color="#2c3e50" to="/chat" v-if="loginState && emailVerified" flat>
-        <span>Chat</span>
-        <v-icon>textsms</v-icon>
-      </v-btn>
-
-      <v-btn color="#2c3e50" to="/chat" v-else disabled flat>
+      <v-btn 
+        color="#2c3e50" 
+        to="/chat" 
+        :disabled="!loginState && emailVerified" 
+        flat
+      >
         <span>Chat</span>
         <v-icon>textsms</v-icon>
       </v-btn>
