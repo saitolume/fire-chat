@@ -46,11 +46,11 @@ export default class SettingForm extends Vue {
         photoURL:    null,
       }).then(() => {
         this.$store.dispatch('updateName', this.name);
-        // 保存後のフォームの見た目を調整（0.8s読み込み→1.5sメッセージ表示）
+        // 保存後のフォームの見た目を調整（0.8s読み込み→1.35sメッセージ表示）
         setTimeout(() => {
           this.loading = false;
           this.saved   = true;
-          setTimeout(this.resetFormLook, 1500);
+          setTimeout(this.resetFormLook, 1350);
         }, 800);
       });
     }
