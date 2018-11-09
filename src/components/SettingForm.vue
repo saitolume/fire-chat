@@ -2,28 +2,14 @@
   <div class="setting-form">
     <v-form>
       <v-flex xs12 sm6>
-        <!-- TODO: フォームの表示切り替えをもっとキレイにする -->
-        <!-- 通常 -->
         <v-text-field
           label="ユーザー名"
-          v-if="!loading && !saved"
           v-model="name"
           :rules="[required]"
-        ></v-text-field>
-        <!-- ローディング中 -->
-        <v-text-field
-          label="ユーザー名"
-          v-else-if="loading"
-          v-model="name"
-          loading
-        ></v-text-field>
-        <!-- 保存成功後 -->
-        <v-text-field
-          label="ユーザー名"
-          v-else-if="!loading && saved"
-          v-model="name"
+          :loading="loading"
+          :success="saved"
+          :success-messages="saved ? '保存しました' : ''"
           @focus="saved = false"
-          success-messages="保存しました"
         ></v-text-field>
       </v-flex>
       <v-btn @click="saveProfile" color="#42b983" :disabled="!name" outline>保存</v-btn>
