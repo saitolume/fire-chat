@@ -4,12 +4,12 @@
     <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
     <p class="msg">Fire Chat へようこそ</p>
     <div class="warm" v-if="!emailVerified || !name">
-      <v-alert v-if="!emailVerified" :value="true" color="error" outline>
+      <v-alert v-if="loginState && !emailVerified" :value="true" color="error" outline>
         <p>アカウントが認証されていません</p>
         <v-btn color="error" @click="sendEmail">認証メールを送信する</v-btn>
       </v-alert>
 
-      <v-alert v-if="!name" :value="true" color="error" outline>
+      <v-alert v-if="loginState && !name" :value="true" color="error" outline>
         <p>ユーザー名が設定されていません</p>
         <v-btn color="error" to="/setting">設定する</v-btn>
       </v-alert>
@@ -73,6 +73,6 @@ h1 {
 }
 
 .v-alert {
-  margin: 20px 10px;
+  margin: 20px 15px;
 }
 </style>
