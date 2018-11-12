@@ -12,7 +12,12 @@
       solo
     ></v-text-field>
     <!-- HACK: ログアウト状態でもchatを開ける問題を暫定的に対処 -->
-    <v-btn @click="sendMessage" :disabled="!loginState" color="success" small>送信</v-btn>
+    <v-btn
+      @click="sendMessage"
+      :disabled="!emailVerified || !name"
+      color="success"
+      small
+    >送信</v-btn>
   </div>
 </template>
 
@@ -25,11 +30,12 @@ const db = firebase.firestore();
 
 @Component({})
 export default class Chat extends Vue {
-  private messages: Message[] = [/* { name: string text: string timestamp: number uid: string } */];
+  // Message型 { name: string text: string timestamp: number uid: string }
+  private messages: Message[] = [];
   private messageText: string = '';
 
-  private get loginState(): string {
-    return this.$store.getters.loginState;
+  private get emailVerified(): string {
+    return this.$store.getters.emailVerified;
   }
 
   private get name(): string {
