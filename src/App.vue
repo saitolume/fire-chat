@@ -46,8 +46,7 @@ export default class App extends Vue {
 }
 
 .content-area {
-  margin-top: 60px;
-  padding-top: 30px;
+  padding-top: 85px;
 }
 
 a {
