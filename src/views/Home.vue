@@ -3,10 +3,10 @@
     <h1>Home</h1>
     <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
     <p class="msg">Fire Chat へようこそ</p>
-    <div class="warm" v-if="!emailVerified">
-      <v-alert :value="true" color="error" outline>
+    <div class="warm" v-if="!emailVerified || !name">
+      <v-alert v-if="!emailVerified" :value="true" color="error" outline>
         <p>アカウントが認証されていません</p>
-        <v-btn v-if="!emailVerified" color="error" @click="sendEmail">認証メールを送信する</v-btn>
+        <v-btn color="error" @click="sendEmail">認証メールを送信する</v-btn>
       </v-alert>
 
       <v-alert v-if="!name" :value="true" color="error" outline>
