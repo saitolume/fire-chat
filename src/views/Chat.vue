@@ -5,19 +5,21 @@
         {{ item.name }} : {{ item.text }}
       </div>
     </div>
-    <v-text-field
-      class="message-input"
-      v-model="messageText"
-      placeholder="メッセージを入力"
-      solo
-    ></v-text-field>
-    <!-- HACK: ログアウト状態でもchatを開ける問題を暫定的に対処 -->
-    <v-btn
-      @click="sendMessage"
-      :disabled="!emailVerified || !name"
-      color="success"
-      small
-    >送信</v-btn>
+    <div class="message-form">
+      <v-text-field
+        class="message-input"
+        v-model="messageText"
+        placeholder="メッセージを入力"
+        solo flat
+      ></v-text-field>
+      <!-- HACK: ログアウト状態でもchatを開ける問題を暫定的に対処 -->
+      <v-btn
+        @click="sendMessage"
+        :disabled="!emailVerified || !name"
+        color="success"
+        small
+      >送信</v-btn>
+    </div>
   </div>
 </template>
 
@@ -104,28 +106,35 @@ export default class Chat extends Vue {
   text-align: left;
 }
 
+.message-form {
+  background-color: #cecece;
+  width: 100%;
+  height: 59px;
+  position: fixed;
+  bottom: 56px;
+  box-shadow: 0 0 7px gray;
+}
+
 .message-list {
   margin: 0px 0px 130px 40px;
 }
 
 .message-input {
-  width: 77%;
   margin-bottom: 28px;
   position: fixed;
-  left: 0px;
-  bottom: 0px;
-  .v-input {
-    margin: 0px;
-    padding: 0px;
-  }
+  left: 8px;
+  bottom: 6px;
+  width: calc(100% - 113px);
 }
 
 .v-btn {
   position: fixed;
   right: 0px;
   bottom: 56px;
-  margin: 0px;
-  width: 23%;
   height: 48px;
+}
+
+button {
+  width: 90px;
 }
 </style>
