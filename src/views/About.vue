@@ -18,7 +18,7 @@ export default class About extends Vue {}
 
 <style lang="scss" scoped>
 h1 {
-  margin: 10px 0px 20px 0px;
+  margin-bottom: 20px;
 }
 
 .footer {

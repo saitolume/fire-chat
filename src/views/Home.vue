@@ -3,10 +3,15 @@
     <h1>Home</h1>
     <img class="logo" src="../assets/firebase_logo.png" height="130px" alt="logo">
     <p class="msg">Fire Chat へようこそ</p>
-    <div class="warm" v-if="!emailVerified && loginState">
-      <v-alert :value="true" color="error" outline>
-      <p>まだアカウントは認証されていません</p>
-      <v-btn color="error" @click="sendEmail">認証メールを送信する</v-btn>
+    <div class="warm" v-if="!emailVerified || !name">
+      <v-alert v-if="loginState && !emailVerified" :value="true" color="error" outline>
+        <p>アカウントが認証されていません</p>
+        <v-btn color="error" @click="sendEmail">認証メールを送信する</v-btn>
+      </v-alert>
+
+      <v-alert v-if="loginState && !name" :value="true" color="error" outline>
+        <p>ユーザー名が設定されていません</p>
+        <v-btn color="error" to="/setting">設定する</v-btn>
       </v-alert>
     </div>
   </div>
@@ -24,6 +29,10 @@ export default class Home extends Vue {
 
   private get loginState(): boolean {
     return this.$store.getters.loginState;
+  }
+
+  private get name(): boolean {
+    return this.$store.getters.name;
   }
 
   private sendEmail(): void {
@@ -44,7 +53,7 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
 h1 {
-  margin: 10px 0px 20px 0px;
+  margin-bottom: 20px;
 }
 
 .msg {
@@ -60,5 +69,10 @@ h1 {
   p {
     margin: 0px;
   }
+  margin-bottom: 70px;
+}
+
+.v-alert {
+  margin: 20px 15px;
 }
 </style>

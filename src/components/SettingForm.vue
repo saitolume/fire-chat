@@ -70,6 +70,7 @@ export default class SettingForm extends Vue {
   justify-content: center;
   align-items: center
 }
+
 .v-input {
   width: 210px;
 }
