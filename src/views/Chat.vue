@@ -15,8 +15,6 @@ import firebase from 'firebase/app';
 import ChatForm from '@/components/ChatForm.vue';
 import Message from '@/types/message';
 
-const db = firebase.firestore();
-
 @Component({
   components: {
     ChatForm,
@@ -37,7 +35,7 @@ export default class Chat extends Vue {
   }
 
   private fetchMessages(): void {
-    db.collection('messages').get().then((snapshot) => {
+    firebase.firestore().collection('messages').get().then((snapshot) => {
       // 型指定した配列に直接Firestoreのドキュメントを入れることはできない
       const messages: any[] = [];
       snapshot.docs.forEach((doc) => {
@@ -49,7 +47,7 @@ export default class Chat extends Vue {
 
   // TODO: 追加されたmessageだけを取得するように改善する
   private refreshMessages(): void {
-    db.collection('messages').onSnapshot((snapshot) => {
+    firebase.firestore().collection('messages').onSnapshot((snapshot) => {
       const messages: any[] = [];
       snapshot.forEach((doc) => {
         messages.push(doc.data());

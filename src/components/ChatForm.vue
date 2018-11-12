@@ -21,8 +21,6 @@ import { Component, Vue } from 'vue-property-decorator';
 import firebase from 'firebase/app';
 import Message from '@/types/message';
 
-const db = firebase.firestore();
-
 @Component({})
 export default class ChatForm extends Vue {
   // Message型 { name: string text: string timestamp: number uid: string }
@@ -44,7 +42,7 @@ export default class ChatForm extends Vue {
 
   private sendMessage(): void {
     if (this.messageText) {
-      db.collection('messages').add({
+      firebase.firestore().collection('messages').add({
         name:      this.name,
         text:      this.messageText,
         timestamp: Date.now(),
