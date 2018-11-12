@@ -23,8 +23,6 @@ import Message from '@/types/message';
 
 @Component({})
 export default class ChatForm extends Vue {
-  // Message型 { name: string text: string timestamp: number uid: string }
-  private messages: Message[] = [];
   private messageText: string = '';
 
   private get emailVerified(): string {
