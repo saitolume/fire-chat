@@ -23,7 +23,7 @@ const store = new Vuex.Store({
     setEmailVerified(state, payload) { state.emailVerified = payload.emailVerified; },
     setLoginState(state, value)      { state.loginState = value; },
     setName(state, payload)          { state.name = payload.name; },
-    setUid(state, payload)           { state.uid = payload.name; },
+    setUid(state, payload)           { state.uid = payload.uid; },
   },
   actions: {
     updateEmail({ commit }, email) {
