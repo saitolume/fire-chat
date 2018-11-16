@@ -56,6 +56,7 @@ export default class Chat extends Vue {
   }
 
   private created(): void {
+    // チャットが保存されていないときにエラーが出る
     this.fetchMessages();
     this.refreshMessages();
   }
