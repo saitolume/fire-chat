@@ -49,7 +49,7 @@ export default class SettingForm extends Vue {
         displayName: this.name,
         photoURL:    null,
       }).then(() => {
-        this.updateMessage();
+        this.updateMessageDoc();
         this.$store.dispatch('updateName', this.name);
         // 保存後のフォームの見た目を調整（0.8s読み込み→1.35sメッセージ表示）
         setTimeout(() => {
@@ -66,7 +66,8 @@ export default class SettingForm extends Vue {
     this.saved   = false;
   }
 
-  private updateMessage(): void {
+  // 自分のチャットを取得してドキュメントのnameを更新する
+  private updateMessageDoc(): void {
     const messagesRef = firebase.firestore().collection('messages');
     messagesRef.where('uid', '==', `${this.uid}`).get().then((snapshot) => {
       snapshot.docs.forEach((doc) => {
