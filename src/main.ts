@@ -14,7 +14,7 @@ import './registerServiceWorker';
 Vue.config.productionTip = false;
 
 // production: [0], staging: [1]
-firebase.initializeApp(firebaseConfig[1]);
+firebase.initializeApp(firebaseConfig[0]);
 firebase.firestore().settings({ timestampsInSnapshots: true });
 
 Vue.use(Vuetify, {

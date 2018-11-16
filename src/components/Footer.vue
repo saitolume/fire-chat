@@ -9,7 +9,7 @@
       <v-btn 
         color="#2c3e50" 
         to="/chat" 
-        :disabled="!loginState && emailVerified" 
+        :disabled="!loginState || !emailVerified" 
         flat
       >
         <span>Chat</span>
