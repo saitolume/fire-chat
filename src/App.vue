@@ -28,6 +28,7 @@ export default class App extends Vue {
         this.$store.dispatch('updateEmail',         user.email);
         this.$store.dispatch('updateEmailVerified', user.emailVerified);
         this.$store.dispatch('updateName',          user.displayName);
+        this.$store.dispatch('updateUid',           user.uid);
       } else {
         this.$store.dispatch('updateLoginState',    false);
       }

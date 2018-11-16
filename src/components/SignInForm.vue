@@ -23,9 +23,9 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class SignInForm extends Vue {
-  private show:     boolean = false;
   private email:    string  = '';
   private password: string  = '';
+  private show:     boolean = false;
 
   private signIn(): void {
     firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {

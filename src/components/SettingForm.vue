@@ -28,9 +28,13 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class SettingForm extends Vue {
-  private name:    string  = this.$store.getters.name; // ページを更新すると空になる
   private loading: boolean = false;
+  private name:    string  = this.$store.getters.name; // ページを更新すると空になる
   private saved:   boolean = false;
+
+  private get uid(): string {
+    return this.$store.getters.uid;
+  }
 
   private required(value: string): string | boolean {
     return value ? true : '入力してください';
@@ -45,6 +49,7 @@ export default class SettingForm extends Vue {
         displayName: this.name,
         photoURL:    null,
       }).then(() => {
+        this.updateMessageDoc();
         this.$store.dispatch('updateName', this.name);
         // 保存後のフォームの見た目を調整（0.8s読み込み→1.35sメッセージ表示）
         setTimeout(() => {
@@ -59,6 +64,18 @@ export default class SettingForm extends Vue {
   private resetFormLook(): void {
     this.loading = false;
     this.saved   = false;
+  }
+
+  // 自分のチャットを取得してドキュメントのnameを更新する
+  private updateMessageDoc(): void {
+    const messagesRef = firebase.firestore().collection('messages');
+    messagesRef.where('uid', '==', `${this.uid}`).get().then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        messagesRef.doc(`${doc.id}`).update({
+          name: this.name,
+        });
+      });
+    });
   }
 }
 </script>

@@ -41,10 +41,10 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class SignUpForm extends Vue {
-  private show:           boolean = false;
   private email:          string  = '';
   private password:       string  = '';
   private passwordAgain:  string  = '';
+  private show:           boolean = false;
 
   private required(value: string): string | boolean {
     return value ? true : '入力してください';

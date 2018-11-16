@@ -9,18 +9,21 @@ const store = new Vuex.Store({
     emailVerified: false,
     loginState: false,
     name: '',
+    uid: '',
   },
   getters: {
     email(state)         { return state.email; },
     emailVerified(state) { return state.emailVerified; },
     loginState(state)    { return state.loginState; },
     name(state)          { return state.name; },
+    uid(state)           { return state.uid; },
   },
   mutations: {
     setEmail(state, payload)         { state.email = payload.email; },
     setEmailVerified(state, payload) { state.emailVerified = payload.emailVerified; },
     setLoginState(state, value)      { state.loginState = value; },
     setName(state, payload)          { state.name = payload.name; },
+    setUid(state, payload)           { state.uid = payload.uid; },
   },
   actions: {
     updateEmail({ commit }, email) {
@@ -34,6 +37,9 @@ const store = new Vuex.Store({
     },
     updateName({ commit }, name) {
       commit('setName', { name });
+    },
+    updateUid({ commit }, uid) {
+      commit('setUid', { uid });
     },
   },
 });

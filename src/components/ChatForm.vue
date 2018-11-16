@@ -34,8 +34,7 @@ export default class ChatForm extends Vue {
   }
 
   private get uid(): string {
-    const user = firebase.auth().currentUser;
-    return user ? user.uid : '';
+    return this.$store.getters.uid;
   }
 
   private sendMessage(): void {

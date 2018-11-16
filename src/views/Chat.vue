@@ -24,14 +24,9 @@ export default class Chat extends Vue {
   // Message型 { name: string text: string timestamp: number uid: string }
   private messages: Message[] = [];
 
-  // 自分のチャットを識別するのに使う
+  // 自分のチャットを識別するのに使う予定
   private get uid(): string {
-    const user = firebase.auth().currentUser;
-    return user ? user.uid : '';
-  }
-
-  private scrollBottom() {
-    window.scrollTo(0, document.body.clientHeight);
+    return this.$store.getters.uid;
   }
 
   private fetchMessages(): void {
@@ -45,7 +40,7 @@ export default class Chat extends Vue {
     });
   }
 
-  // TODO: 追加されたmessageだけを取得するように改善する
+  // TODO: 取得するmessageを追加されたものだけにする
   private refreshMessages(): void {
     firebase.firestore().collection('messages').onSnapshot((snapshot) => {
       const messages: any[] = [];
@@ -54,6 +49,10 @@ export default class Chat extends Vue {
       });
       this.messages = messages.sort((a, b) => a.timestamp - b.timestamp);
     });
+  }
+
+  private scrollBottom() {
+    window.scrollTo(0, document.body.clientHeight);
   }
 
   private created(): void {
