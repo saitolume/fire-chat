@@ -67,15 +67,15 @@ export default class ChatForm extends Vue {
   margin-bottom: 28px;
   position: fixed;
   left: 8px;
-  bottom: 6px;
+  bottom: 34px;
   width: calc(100% - 113px);
 }
 
 .v-btn {
   position: fixed;
   right: 0px;
-  bottom: 56px;
-  height: 48px;
+  bottom: 57px;
+  height: 47px;
 }
 
 button {
