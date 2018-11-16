@@ -28,8 +28,8 @@ import firebase from 'firebase/app';
 
 @Component({})
 export default class SettingForm extends Vue {
-  private name:    string  = this.$store.getters.name; // ページを更新すると空になる
   private loading: boolean = false;
+  private name:    string  = this.$store.getters.name; // ページを更新すると空になる
   private saved:   boolean = false;
 
   private get uid(): string {
@@ -49,8 +49,7 @@ export default class SettingForm extends Vue {
         displayName: this.name,
         photoURL:    null,
       }).then(() => {
-        // firebase.firestore().collection('messages').where('uid', '==', `${this.uid}`).get().then((snapshot) => {
-        // });
+        this.updateMessage();
         this.$store.dispatch('updateName', this.name);
         // 保存後のフォームの見た目を調整（0.8s読み込み→1.35sメッセージ表示）
         setTimeout(() => {
@@ -65,6 +64,17 @@ export default class SettingForm extends Vue {
   private resetFormLook(): void {
     this.loading = false;
     this.saved   = false;
+  }
+
+  private updateMessage(): void {
+    const messagesRef = firebase.firestore().collection('messages');
+    messagesRef.where('uid', '==', `${this.uid}`).get().then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        messagesRef.doc(`${doc.id}`).update({
+          name: this.name,
+        });
+      });
+    });
   }
 }
 </script>
